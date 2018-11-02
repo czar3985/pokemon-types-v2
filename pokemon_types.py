@@ -44,8 +44,10 @@ APPLICATION_NAME = 'Pokemon Types'
 
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///pokemon.db',
-                       connect_args={'check_same_thread': False})
+# Switch to PostgreSQL
+#engine = create_engine('sqlite:///pokemon.db',
+#                       connect_args={'check_same_thread': False})
+engine = create_engine('postgresql://catalog:udacity@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)

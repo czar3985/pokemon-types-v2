@@ -6,7 +6,9 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Pokemon, Category, Type, Move, User
 from view_model import get_type_id, get_move_id
 
-engine = create_engine('sqlite:///pokemon.db')
+# Switch to PostgreSQL
+# engine = create_engine('sqlite:///pokemon.db')
+engine = create_engine('postgresql://catalog:udacity@localhost/catalog')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine

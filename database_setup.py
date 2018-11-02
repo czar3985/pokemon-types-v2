@@ -101,5 +101,7 @@ class Pokemon(Base):
 
 
 # Create the database
-engine = create_engine('sqlite:///pokemon.db')
+# Switch to PostgreSQL
+# engine = create_engine('sqlite:///pokemon.db')
+engine = create_engine('postgresql://catalog:udacity@localhost/catalog')
 Base.metadata.create_all(engine)
