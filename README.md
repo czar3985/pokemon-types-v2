@@ -99,9 +99,13 @@ Follow the steps below to create _client_secrets.json_
 4. Choose Credentials
 5. Create an OAuth Client ID.
 6. Configure the consent screen, with email and app name
-7. Choose Web application list of application types
-8. Set the authorized JavaScript origins - http://localhost:8000
-9. Authorized redirect URIs: http://localhost:8000/login and http://localhost:8000/gconnect
+7. Add authorized domain `amazonaws.com`. Follow the steps to verify ownership of the domain.
+8. Choose Web application list of application types
+8. Set the authorized JavaScript origins: 
+- http://ec2-54-252-131-90.ap-southeast-2.compute.amazonaws.com
+9. Authorized redirect URIs: 
+- http://ec2-54-252-131-90.ap-southeast-2.compute.amazonaws.com/login
+- http://ec2-54-252-131-90.ap-southeast-2.compute.amazonaws.com/gconnect
 10. Download the client secret JSON file and copy the contents to client_secrets.json in the same folder as the pokemon_types.py file
 
 
