@@ -1,0 +1,74 @@
+﻿<!-- LAYOUT.HTML is the common page layout used in all pages in the
+     application.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon</title>
+
+  <!-- Metas for SEO -->
+  <meta name="description" content="Pokemon directory" />
+  <meta name="keywords" content="pokemon" />
+
+  <!-- Styling for the page -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
+
+  {% block head %}
+  {% endblock %}
+</head>
+
+<body>
+  <!-- Header of the page -->
+  <div class="fixed-top">
+
+    <!--User info and sign-in options-->
+    <section class="login-section">
+
+      {%if 'email' not in session %}
+      <p class="login-link">
+        <a class="accent-color-1" href="{{url_for('showLogin')}}">Sign in</a>
+      </p>
+      {% else %}
+      <div class="login-dropdown">
+        <button class="login-button">
+          Signed in as {{session['username']}}
+          <span class="text-color-main-light">&#9660;</span>
+        </button>
+        <div class="dropdown-content">
+          <a href="{{url_for('gdisconnect')}}">Sign out</a>
+        </div>
+      </div>
+      {% endif %}
+
+    </section>
+
+    <!--Banner showing page title-->
+    <header class="banner">
+      <img class="banner-image" src="{{url_for('static', filename='banner.jpg')}}" alt="Beach view in Pokemon" />
+      <h1 class="banner-text text-color-main">Pokemon Types</h1>
+    </header>
+  </div>
+
+  <!-- Main Page content -->
+  {% block body %}
+  {% endblock %}
+
+  <!-- JQuery Script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous">
+  </script>
+
+  <!--Script for the page-->
+  <script src="{{url_for('static', filename='main.js')}}"></script>
+
+  {% block login_script_block %}
+  {% endblock %}
+</body>
+
+</html>

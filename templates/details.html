@@ -1,0 +1,154 @@
+<!-- DETAILS.HTML shows all the details for the selected pokemon. When the
+     creator is not logged-in, the options for editing and deleting are not
+     available. Accessible through http://localhost:8000/pokemon/<id> or by
+     clicking the pokemon's tile from the Home Page.
+  -->
+
+{% extends "layout.html" %}
+
+{% block body %}
+<main class="details-content">
+
+  <!--Flash Message-->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="flash background-color-accent text-color-light">
+    <ul>
+      {% for message in messages %}
+      <li><strong>{{message}}</strong></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  <!--Pokemon name and image-->
+  <h2 class="text-color-main">{{pokemon.name}}</h2>
+
+  <div class="detail-image-container">
+    <img class="details-image" src="{{pokemon.image}}" />
+  </div>
+
+  <!--Pokemon details in a table-->
+  <table class="details-table">
+    <tr>
+      <td class="details-label">Pokedex ID</td>
+      <td>{{pokemon.pokedex_id}}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Category</td>
+      <td>{{pokemon.category}}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Type</td>
+      <td>
+        {% for item in pokemon.types %}
+        {{item}}
+
+        {% if loop.index != pokemon.types|length %}
+        <span>,</span>
+        {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <td class="details-label">Description</td>
+      <td>{{pokemon.description}}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Height</td>
+      <td>{{pokemon.height}}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Weight</td>
+      <td>{{pokemon.weight}} lbs.</td>
+    </tr>
+    <tr>
+      <td class="details-label" rowspan="2">Evolutions</td>
+
+      {% if pokemon.evolution_before %}
+      <td>Evolves from {{pokemon.evolution_before}}</td>
+      {% else %}
+      <td>Does not evolve from any pokemon</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <td>
+        {% if pokemon.evolutions_after %}
+        Evolves to
+
+        {% for item in pokemon.evolutions_after %}
+        {{item}}
+        {% if loop.index != pokemon.evolutions_after|length %}
+        <span>,</span>
+        {% endif %}
+        {% endfor %}
+
+        {% else %}
+        Does not evolve to any pokemon
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td class="details-label">Weaknesses</td>
+      <td>
+        {% for item in pokemon.weaknesses %}
+        {{item}}
+
+        {% if loop.index != pokemon.weaknesses|length %}
+        <span>,</span>
+        {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <td class="details-label">Moves</td>
+      <td>
+        {% for item in pokemon.moves %}
+        {{item}}
+
+        {% if loop.index != pokemon.moves|length %}
+        <span>,</span>
+        {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <td class="details-label">Mythical Pokemon</td>
+      <td>
+        {% if pokemon.is_mythical %}
+        Yes
+        {% else %}
+        No
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td class="details-label">Legendary Pokemon</td>
+      <td>
+        {% if pokemon.is_legendary %}
+        Yes
+        {% else %}
+        No
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+
+  <!--User who added the pokemon to the database-->
+  <p class="details-user-info">Added by {{pokemon.user}}</p>
+  <br />
+
+  <!--Options available in the details page-->
+  <div class="details-buttons">
+    {% block edit_delete_block %}
+    {% endblock %}
+
+    <a href="{{url_for('showHome')}}">
+      <div class="cancel-link text-color-accent">
+        Return to Home
+      </div>
+    </a>
+  </div>
+</main>
+{% endblock %}

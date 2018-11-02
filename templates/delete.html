@@ -1,0 +1,32 @@
+<!-- DELETE.HTML asks the user for confirmation on deleting a pokemon from the
+     database. Deletion can only be performed by the user that added the entry.
+     Accessible through http://localhost:8000/pokemon/<id>/delete or through
+     the Delete button in the specific pokemon's Details Page.
+  -->
+
+{% extends "layout.html" %}
+
+{% block body %}
+
+<main>
+  <h2 class="text-color-main">{{pokemon.name}}</h2>
+
+  <div class="detail-image-container">
+    <img class="details-image" src="{{pokemon.image}}" />
+  </div>
+
+  <!--Confirmation to delete-->
+  <h3 class="text-color-main-light">Are you sure you want to delete this pokemon?</h3>
+
+  <form action="{{url_for('deletePokemon', id = pokemon.id)}}" method="POST">
+    <input class="submit-link background-color-action text-color-light" type="submit" value="Delete">
+
+    <a href="{{url_for('showHome')}}">
+      <div class="cancel-link border-color-accent text-color-accent">
+        Cancel
+      </div>
+    </a>
+  </form>
+
+</main>
+{% endblock %}

@@ -1,0 +1,82 @@
+﻿<!-- HOME.HTML is the home page that shows all the pokemon in the database
+     or pokemon in the specified type.
+     Accessible through http://localhost:8000/ or http://localhost:8000/pokemon
+     or through Return to Home buttons from other pages.
+  -->
+
+{% extends "layout.html" %}
+
+{% block body %}
+<main class="main-content">
+
+  <!--Flash Message-->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="flash background-color-accent text-color-light">
+    <ul>
+      {% for message in messages %}
+      <li><strong>{{message}}</strong></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  <!--Type selection dropdown box for small viewports-->
+  <select class="types-dropdown border-color-base">
+    {% if selected_type == 'All' %}
+    <option value="All" selected>All</option>
+    {% else %}
+    <option value="All">All</option>
+    {% endif %}
+
+    {% for type in types %}
+
+    {% if selected_type == type.name %}
+    <option value="{{type.name}}" selected>{{type.name}}</option>
+    {% else %}
+    <option value="{{type.name}}">{{type.name}}</option>
+    {% endif %}
+
+    {% endfor %}
+  </select>
+
+  <!--Type selection at the sidebar for wider viewports-->
+  <sidebar class="types-section">
+    <a class="type-link" href="{{url_for('showHome')}}">
+      <div class="type-text text-color-main-light">
+        All
+      </div>
+    </a>
+
+    {% for type in types %}
+    <a class="type-link" href="{{url_for('showType', type = type.name)}}">
+      <div class="type-text text-color-main-light">
+        {{type.name}}
+      </div>
+    </a>
+    {% endfor %}
+  </sidebar>
+
+  <!--Pokemon tiles-->
+  <section class="tiles-area">
+
+    {% block create_block %}
+    {% endblock %}
+
+    <!--Pokemon in the list-->
+    {% for pokemon in pokemon_list %}
+    <div class="tile border-color-base">
+      <a href="{{url_for('showPokemon', id = pokemon.id)}}">
+        <div class="tile-inner">
+          <img class="tile-image" src="{{pokemon.image}}" />
+          <h3 class="tile-name text-color-action">{{pokemon.name}}</h3>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+
+  </section>
+
+</main>
+{% endblock %}

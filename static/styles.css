@@ -1,0 +1,455 @@
+/*
+ *
+ * Common
+ *
+ *
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px "Trebuchet MS", Helvetica, sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+}
+
+main {
+  margin: 5px;
+  padding-top: 155px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*
+ *
+ * Log-in
+ *
+ *
+*/
+
+.login-link {
+  font-style: italic;
+  float: right;
+  margin-top: auto;
+  margin-right: 5px;
+}
+
+.login-dropdown {
+  overflow: hidden;
+  font-style: italic;
+  float: right;
+  margin-top: auto;
+  margin-right: 5px;
+}
+
+.login-dropdown .login-button {
+  font-style: italic;
+  outline: none;
+  border: none;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #EAEAEA;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+  margin-right: 30px;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+  color: black;
+}
+
+.dropdown-content a:hover {
+  background-color: #DDD;
+}
+
+.login-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*
+ *
+ * Header
+ *
+ *
+*/
+
+.fixed-top {
+  position: fixed;
+  max-width: 900px;
+  background-color: white;
+  top: 0;
+  padding: 24px 8px 20px 0;
+}
+
+.banner {
+  clear: both;
+  height: 100px;
+  position: relative;
+}
+
+.banner-image {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  object-position: bottom;
+}
+
+.banner-text {
+  font-size: 2em;
+  position: absolute;
+  margin-left: 0.25em;
+  top: 20px;
+}
+
+/*
+ *
+ * Flash Message
+ *
+ *
+*/
+
+.flash {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 1px;
+  font-size: 1.1em;
+}
+
+.flash ul {
+  margin-top: 1.5em;
+}
+
+.flash li {
+  list-style-type: none;
+  text-align: center;
+}
+
+/*
+ *
+ * Home Page
+ *
+ *
+*/
+
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.types-dropdown {
+  width: 100%;
+  padding: 0.5em;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.types-section {
+  display: none;
+  width: 100%;
+}
+
+.type-text {
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1.25em;
+}
+
+.type-text:hover {
+  background-color: #EAEAEA;
+}
+
+.create-section {
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.create-link {
+  float: left;
+}
+
+.tiles-area {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tile {
+  width: 100%;
+  border: 1px solid;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.tile:hover {
+  background-color: #EAEAEA;
+  cursor: pointer;
+}
+
+.tile-image {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
+.tile-name {
+  text-align: center;
+  font-size: 1.25em;
+}
+
+/*
+*
+* Details Page
+*
+*
+*/
+
+.detail-image-container {
+  width: 80%;
+  margin: auto;
+}
+
+.details-image {
+  max-height: 200px;
+}
+
+.details-label {
+  font-weight: bold;
+}
+
+.details-table,
+.details-table td {
+  border: 1px solid #B37D4E; /* FIELD */
+  border-collapse: collapse;
+  padding: 8px;
+}
+
+.details-user-info {
+  font-style: italic;
+  font-size: 0.75em;
+  float: right;
+  margin-bottom: 10px;
+}
+
+.details-buttons {
+  clear: both;
+}
+
+.details-content .cancel-link {
+  margin-top: 20px;
+}
+
+/*
+*
+* New Page
+*
+*
+*/
+
+.input-group {
+  border: 1px solid;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 0.5em;
+}
+
+input[type=text],
+.input-group textarea {
+  width: 100%;
+}
+
+input[type=text],
+input[type=number],
+.input-group textarea {
+  padding: 0.5em;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #B37D4E; /* FIELD */
+  border-radius: 4px;
+  font: inherit;
+  color: inherit;
+}
+
+.input-group textarea {
+  height: 4.5em;
+}
+
+input[type=checkbox] {
+  margin: 8px 8px;
+}
+
+.input-group label,
+.input-group span {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+/*
+*
+* Buttons and Links
+*
+*
+*/
+
+.submit-link:hover {
+  cursor: pointer;
+}
+
+.cancel-link {
+  border: 1px solid;
+}
+
+.cancel-link,
+.create-link,
+.submit-link,
+.edit-link,
+.delete-link {
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1.25em;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/*
+*
+* Body styling for responsiveness
+*
+*
+*/
+
+@media screen and (min-width: 350px) {
+  .tile {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 370px) {
+  .details-content .cancel-link {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .tile {
+    width: 48%;
+    margin-left: 5px;
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .banner-text {
+    font-size: 2.75em;
+    top: 3px;
+  }
+
+  .types-section {
+    display: block;
+    width: 20%;
+  }
+
+  .types-dropdown {
+    display: none;
+  }
+
+  .create-link {
+    float: right;
+  }
+
+  .tiles-area {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .tile {
+    width: 32%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .banner-text {
+    font-size: 3.25em;
+    top: -8px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  body {
+    width: 900px;
+    margin: auto;
+  }
+}
+
+/*
+ * Colors
+ *    Theme:  #B37D4E // FIELD
+ *            #286DA8 // SUMMER SKY
+ *            #438496 // BREEZE
+ *            #CD5360 // WARM PEACH
+ *            #007849 // IRISES
+*/
+
+.text-color-main {
+  color: #286DA8; /* SUMMER SKY */
+}
+
+.text-color-main-light {
+  color: #438496; /* BREEZE */
+}
+
+.text-color-accent {
+  color: #CD5360; /* WARM PEACH */
+}
+
+.text-color-action {
+  color: #007849; /* IRISES */
+}
+
+.text-color-light {
+  color: white;
+}
+
+.background-color-accent {
+  background-color: #CD5360; /* WARM PEACH */
+}
+
+.background-color-action {
+  background-color: #007849; /* IRISES */
+}
+
+.border-color-base {
+  border-color: #B37D4E; /* FIELD */
+}
+
+.border-color-accent {
+  border-color: #CD5360; /* WARM PEACH */
+}
+
+.type-highlight {
+  background-color: #438496; /* BREEZE */
+  color: white;
+}

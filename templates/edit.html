@@ -1,0 +1,89 @@
+<!-- EDIT.HTML shows all the editable details for the selected pokemon. Edits
+     are only allowed for the user that added the entry.
+     Accessible through http://localhost:8000/pokemon/<id>/edit or by
+     clicking the Edit button from the pokemon's Detail's Page.
+  -->
+
+{% extends "layout.html" %}
+
+{% block body %}
+<main>
+
+  <h2 class="text-color-main">Edit pokemon details</h2>
+
+  <!--Pokemon name and image-->
+  <h3 class="text-color-main-light">{{pokemon.name}}</h3>
+
+  <div class="detail-image-container">
+    <img class="details-image" src="{{pokemon.image}}" />
+  </div>
+
+  <!--Form showing current values that can be edited-->
+  <form action="{{url_for('editPokemon', id = pokemon.id)}}" method='POST'>
+    <div class="input-group border-color-base">
+      <label for="pokedex_id">Pokedex ID</label>
+      <input type="number" id="pokedex_id" name="pokedex_id" min="1" max="806" value="{{pokemon.pokedex_id}}" required>
+      <br />
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" value="{{pokemon.name}}" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" required>{{pokemon.description}}</textarea>
+
+      <label for="image">Image</label>
+      <input type="text" id="image" name="image" value="{{pokemon.image}}" required>
+
+      <label for="height">Height (feet, inches)</label>
+      <input type="number" id="height_ft" name="height_ft" min="0" step="1" value="{{pokemon.height//12}}" required>
+      <input type="number" id="height_inch" name="height_inch" min="0" step="1" value="{{pokemon.height%12}}" required>
+      <br />
+
+      <label for="weight">Weight (lbs)</label>
+      <input type="number" id="weight" name="weight" min="0" step="0.1" value="{{pokemon.weight}}" required>
+      <br />
+
+      {% if pokemon.is_mythical %}
+      <input type="checkbox" name="mythical" value="True" checked><span>Mythical Pokemon</span><br>
+      {% else %}
+      <input type="checkbox" name="mythical" value="True"><span>Mythical Pokemon</span><br>
+      {% endif %}
+
+      {% if pokemon.is_legendary %}
+      <input type="checkbox" name="legendary" value="True" checked><span>Legendary Pokemon</span><br>
+      {% else %}
+      <input type="checkbox" name="legendary" value="True"><span>Legendary Pokemon</span><br>
+      {% endif %}
+
+      <label for="evolution_before">Pokedex ID of pokemon it evolved from or blank if none</label>
+      <input type="number" id="evolution_before" name="evolution_before" min="1" max="806" value="{{pokemon.evolution_before}}">
+      <br />
+
+      <label for="evolution_after">Pokedex IDs of pokemon it may evolve into separated by commas or blank if none</label>
+      <input type="text" id="evolution_after" name="evolution_after" value="{{evolutions_after}}">
+
+      <label for="type">Pokemon type(s) separated by a comma if more than one</label>
+      <input type="text" id="type" name="type" value="{{types}}" required>
+
+      <label for="weakness">Weaknesses separated by commas</label>
+      <input type="text" id="weakness" name="weakness" value="{{weaknesses}}" required>
+
+      <label for="move">Moves separated by commas</label>
+      <textarea id="move" name="move" required>{{moves}}</textarea>
+
+      <label for="category">Pokemon Category</label>
+      <input type="text" id="category" name="category" value={{pokemon.category.name}} required>
+
+    </div>
+
+    <!--Options available for the Edit page-->
+    <input class="submit-link background-color-action text-color-light" type='submit' value='Save'>
+
+    <a href="{{url_for('showPokemon', id = pokemon.id)}}">
+      <div class="cancel-link border-color-accent text-color-accent">
+        Cancel
+      </div>
+    </a>
+  </form>
+</main>
+{% endblock %}

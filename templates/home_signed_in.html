@@ -1,0 +1,21 @@
+﻿<!-- HOME_SIGNED_IN.HTML is same as Home page that shows all pokemon or pokemon
+     in a specified type but with a user signed in so the option to create a
+     new entry is made available.
+     Accessible through http://localhost:8000/ or http://localhost:8000/pokemon
+     or through Return to Home buttons from other pages.
+  -->
+
+{% extends "home.html" %}
+
+{% block create_block %}
+
+<!--Create a new pokemon button-->
+<div class="create-section">
+  <a href="{{url_for('newPokemon')}}">
+    <div class="create-link background-color-action text-color-light">
+      Add a Pokemon
+    </div>
+  </a>
+</div>
+
+{% endblock %}
